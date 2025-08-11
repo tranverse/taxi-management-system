@@ -1,0 +1,91 @@
+spring:
+  config:
+    import: "optional:file:.env[.properties]"
+  application:
+    name: gis
+  data:
+    redis:
+      host: ${REDIS_HOST} # Lấy từ biến môi trường REDIS_HOST
+      port: ${REDIS_PORT} # Lấy từ biến môi trường REDIS_PORT
+      password: ${REDIS_PASSWORD} # Lấy từ biến môi trường REDIS_PASSWORD
+      timeout: 5000 # Thời gian chờ kết nối
+  cache:
+    type: redis
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USER}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope: profile, email
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            authorization-grant-type: authorization_code
+            client-name: Google
+          facebook:
+            client-id: ${FACEBOOK_CLIENT_ID}
+            client-secret: ${FACEBOOK_CLIENT_SECRET}
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+            scope: public_profile, email
+            authorization-grant-type: authorization_code
+            client-name: Facebook
+        provider:
+          google:
+            authorization-uri: https://accounts.google.com/o/oauth2/auth
+            token-uri: https://oauth2.googleapis.com/token
+            user-info-uri: https://www.googleapis.com/oauth2/v3/userinfo
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+  jackson:
+    serialization:
+      FAIL_ON_EMPTY_BEANS: false
+# App custom variables
+app:
+  jwt:
+    access:
+      secret: ${JWT_ACCESS_SECRET}
+      expiration: ${JWT_ACCESS_EXPIRATION}
+    refresh:
+      secret: ${JWT_REFRESH_SECRET}
+      expiration: ${JWT_REFRESH_EXPIRATION}
+  admin:
+    email: ${ADMIN_EMAIL}
+    password: ${ADMIN_PASSWORD}
+  clientReceiveTokensPath: ${CLIENT_RECEIVE_TOKENS_PATH}
+server:
+  port: ${PORT}
+
+cloudinary:
+  cloud-name: ${CLOUDINARY_CLOUD_NAME}
+  api-key: ${CLOUDINARY_API_KEY}
+  secret-key: ${CLOUDINARY_SECRET_KEY}
+  folder: ${CLOUDINARY_FOLDER}
+
+
