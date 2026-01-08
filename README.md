@@ -1,175 +1,131 @@
-# Taxi Management System
+# Taxi Management System / Hệ thống quản lý taxi
 
-A full-stack taxi management system simulating a technology-based taxi company.  
-The system supports **Admin, Driver, and Customer** roles and manages drivers, vehicles, trips, pricing, and ratings.
+This repository contains a full-stack Taxi Management System that simulates a technology-based taxi company. It supports Admin, Driver, and Customer roles and manages drivers, vehicles, trips, pricing, ratings, and loyalty points.
 
-This project is developed as an academic project and demonstrates real-world business logic used in ride-hailing platforms.
-
----
-
-## ✨ Features
-
-### 👨‍💼 Admin Account
-- View real-time locations of all vehicles on the map
-- View a list of vehicles currently on trips with detailed information
-- Simulate vehicle tracking during trips
-- View detailed driver ratings based on evaluation criteria
-- Manage fare pricing rules
+Mô tả: Đây là dự án full-stack mô phỏng một công ty taxi công nghệ, hỗ trợ các vai trò Admin, Driver và Customer, quản lý tài xế, phương tiện, chuyến đi, giá cước, đánh giá và điểm khách hàng thân thiết.
 
 ---
 
-### 🚖 Driver Account
-- Accept or reject trip requests
-- Pick up and drop off customers
-- View detailed rating scores and evaluation criteria
+## ✨ Features / Tính năng
+
+- Role-based access: Admin, Driver, Customer (Phân quyền: Admin, Tài xế, Khách hàng)
+- Real-time (simulated) vehicle location and trip tracking (Theo dõi vị trí phương tiện mô phỏng)
+- Trip request, assignment, accept/reject flow (Yêu cầu chuyến, phân công, chấp nhận/từ chối)
+- Fare calculation with configurable pricing rules (Tính cước theo quy tắc tùy chỉnh)
+- Detailed driver ratings and per-trip evaluations (Đánh giá chi tiết tài xế theo chuyến)
+- Loyalty points and rewards for customers (Điểm khách hàng thân thiết)
 
 ---
 
-### 👤 Customer Account
-- Request a taxi
-- View trip details and assigned driver information
-- Rate completed trips
-- Earn loyalty points based on trip fare
+## 🗂️ Managed Data / Dữ liệu quản lý
 
----
-
-### ⚙️ System Capabilities
-- Automatically find available drivers for customer requests
-- Manage detailed ratings per trip and per driver
-- Manage loyalty customers with accumulated reward points
-- Fare calculation based on distance and pricing rules
-
----
-
-## 🗂️ Managed Data
-
-- **Driver Information**
-  - Full name
-  - Gender
-  - Phone number
-  - Vehicle information (license plate, model, seat capacity)
-  - Overall rating and detailed ratings per criterion
-
-- **Trip Information**
-  - Customer name and phone number
-  - Pickup location
-  - Destination
-  - Trip rating
-
-- **Pricing Management**
-  - Base fare
-  - Distance-based pricing
-
-- **Loyalty Customers**
-  - Reward points accumulated from completed trips
+- Driver information: name, gender, phone, vehicle (plate, model, seats), overall and per-criterion ratings
+- Trip information: customer, pickup, destination, fare, status, rating
+- Pricing: base fare, per-distance pricing rules
+- Loyalty: accumulated reward points for customers
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- React
-- React Router
+Frontend:
+- React, React Router
 - Axios
 - Ant Design / Tailwind CSS
 - Map API (simulated)
 
-### Backend
+Backend:
 - Spring Boot
 - Spring Data JPA
 - Spring Security (JWT)
 - RESTful API
 
-### Database
+Database:
 - MySQL
 
 ---
 
-## 🚀 Getting Started
-
-Follow the steps below to set up and run the Taxi Management System locally.
-
-git clone https://github.com/your-username/taxi-management-system.git
-cd taxi-management-system
-3️⃣ Application Properties
-
-The backend configuration is defined in the following file:
-
-backend/src/main/resources/application.properties
-
-
-Open this file and configure the MySQL database connection properties:
-
-spring.datasource.url=jdbc:mysql://localhost:3306/taxi_management_db
-spring.datasource.username=your-username
-spring.datasource.password=your-password
-
-
-Replace your-username and your-password with your MySQL database credentials.
-
-(Optional) To change the backend server port, update the following line:
-
-server.port=8080
-
-
-Replace 8080 with the desired port number.
-
-Save the application.properties file after updating the values.
-
-4️⃣ Backend Setup
-
-Navigate to the backend directory:
-
-cd backend
-
-
-Build and run the Spring Boot application:
-
-./mvnw spring-boot:run
-
-
-The backend server should now be running at:
-👉 http://localhost:8080
-
-5️⃣ Frontend Setup
-
-Navigate to the frontend directory:
-
-cd frontend
-
-
-Install the dependencies:
-
-npm install
-
-
-Start the React development server:
-
-npm start
-
-
-The frontend application should now be running at:
-👉 http://localhost:3000
-
-6️⃣ Access the Application
-
-Open your web browser and visit:
-👉 http://localhost:3000
-
-Make sure both frontend and backend servers are running at the same time.
-
-## 📦 Prerequisites
+## 📦 Prerequisites / Yêu cầu trước
 
 Make sure you have installed:
-- Node.js >= 18
-- npm
-- Java 17 or higher
+- Node.js >= 18 and npm
+- Java 17+
 - Maven
 - MySQL
 
 Check versions:
-```bash
+```
 node -v
 npm -v
 java -version
 mvn -v
+```
+
+---
+
+## 🚀 Getting Started / Cách chạy dự án
+
+1. Clone the repository
+
+```
+git clone https://github.com/tranverse/taxi-management-system.git
+cd taxi-management-system
+```
+
+2. Backend configuration
+
+Open `backend/src/main/resources/application.properties` and update your MySQL connection:
+
+```
+spring.datasource.url=jdbc:mysql://localhost:3306/taxi_management_db
+spring.datasource.username=your-username
+spring.datasource.password=your-password
+server.port=8080
+```
+
+Replace `your-username` and `your-password` with your MySQL credentials.
+
+3. Start the backend
+
+```
+cd backend
+./mvnw spring-boot:run
+```
+
+The backend will run at: http://localhost:8080
+
+4. Start the frontend
+
+```
+cd frontend
+npm install
+npm start
+```
+
+The frontend will run at: http://localhost:3000
+
+Make sure both backend and frontend are running.
+
+---
+
+## 🔧 Useful notes / Ghi chú hữu ích
+
+- To change the backend port, update `server.port` in application.properties.
+- If you need to initialize the database, check `backend/src/main/resources` for SQL or data seeding scripts (if any).
+- Environment variables and secrets should be managed securely in a production environment.
+
+---
+
+## 🤝 Contributing
+
+Contributions, bug reports, and pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+---
+
+## 📫 Contact
+
+Project maintained by the repository owner. For questions, open an issue or contact the maintainer.
+
+---
+
+(EN/VN) Last updated: 2026-01-08
